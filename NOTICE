@@ -1,0 +1,15 @@
+AI-Shifu for school CLI and Skills
+Copyright (c) 2026 AI-Shifu
+
+This distribution contains the public school client and its bundled agent skills.
+It does not contain or grant rights to the school platform server, databases,
+private deployment configuration, or the original AI-Shifu course tools repository.
+
+The bundled teaching reference documents were adapted from AI-Shifu's
+ai-shifu-course-creator 2.0.0 materials. Those adapted documents are included
+in this distribution with AI-Shifu's permission under the MIT License.
+Original source identifiers and checksums are recorded in
+skills/school-online-course/references/sources.md.
+
+The original source repository retains its own licensing terms. This client's
+license does not change the license of that repository or any external service.

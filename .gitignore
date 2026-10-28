@@ -1,0 +1,16 @@
+.venv/
+.runtime/
+dist/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+*.egg-info/
+.env
+.env.*
+!.env.example
+*.cookies
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+.DS_Store
