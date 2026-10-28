@@ -182,9 +182,9 @@ def test_pull_backups_and_wrong_service_fail_before_requests(tmp_path):
         Path(path).read_text(encoding="utf-8") == "本地未保存"
         for path in pulled["backups"]
     )
-    manifest = json.loads((source / courses.MANIFEST).read_text())
+    manifest = json.loads((source / courses.MANIFEST).read_text(encoding="utf-8"))
     manifest["server"] = "https://another-school.example"
-    (source / courses.MANIFEST).write_text(json.dumps(manifest))
+    (source / courses.MANIFEST).write_text(json.dumps(manifest), encoding="utf-8")
     before = len(client.calls)
     with pytest.raises(CLIError):
         courses.pull(client, "course1", source)
@@ -217,7 +217,7 @@ def test_create_connection_loss_records_pending_and_never_duplicates(tmp_path):
         courses.create_directory(client, source)
     assert result.value.kind == "network"
     assert "course" in result.value.details["completed"]
-    journal = json.loads((source / ".school-create.json").read_text())
+    journal = json.loads((source / ".school-create.json").read_text(encoding="utf-8"))
     assert journal["pending"] == "chapter:0"
     count = client.write_count
     with pytest.raises(CLIError) as result:
@@ -229,9 +229,9 @@ def test_create_connection_loss_records_pending_and_never_duplicates(tmp_path):
 def test_structure_changes_and_path_escape_are_rejected(tmp_path):
     source = author_directory(tmp_path / "authored")
     client = CourseService()
-    structure = json.loads((source / "structure.json").read_text())
+    structure = json.loads((source / "structure.json").read_text(encoding="utf-8"))
     structure["chapters"][0]["lessons"][0]["file"] = "../../outside.md"
-    (source / "structure.json").write_text(json.dumps(structure))
+    (source / "structure.json").write_text(json.dumps(structure), encoding="utf-8")
     with pytest.raises(CLIError):
         courses.create_directory(client, source)
     assert not client.calls
